@@ -53,7 +53,7 @@ optional arguments:
                         Enable auto discovery if set true else false. (example
                         "--auto true") (default: false)
   -addr ADDRESS         Polling server on this address. (default "127.0.0.1")
-  -p PORT               Listen to this port. (default "9130")
+  -p PORT               Listen to this port. (default "9123")
   --path PATH           Path under which to expose metrics. (default
                         "/metrics")
   --period PERIOD       Period (seconds) to consume jmx service. (default: 30)
@@ -64,7 +64,7 @@ You can use config file (yaml format) to replace commandline args. Example of co
 # exporter server config
 server:
   address: 127.0.0.1 # address to run exporter
-  port: 9130 # port to listen
+  port: 9123 # port to listen
 
 # list of jmx service to consume
 jmx:
@@ -80,13 +80,13 @@ jmx:
 
 ```
 
-Tested on Apache Hadoop 2.7.3, 3.3.0
+Tested on Apache Hadoop 2.7.3, 3.2.4, 3.3.0
 
 # Docker deployment
 
 Run container:
 ```
-docker run -d \
+docker run -d -p 9123:9123 \
   --name hadoop-exporter \
   vqcuong96/hadoop_exporter \
   -nn http://localhost:9870/jmx \
