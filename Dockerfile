@@ -6,7 +6,7 @@ ENV container=docker
 
 ADD requirements.txt /tmp
 
-ENV EXPORTER_PORT=9130 \
+ENV EXPORTER_PORT=9123 \
     EXPORTER_HOME=/exporter \
     EXPORTER_METRICS_DIR=/exporter/metrics \
     EXPORTER_LOGS_DIR=/exporter/logs
@@ -30,5 +30,5 @@ RUN set -ex \
     && chmod +x /entrypoint.sh /service.py
 
 ENV PYTHONPATH=${PYTHONPATH}:${EXPORTER_HOME}
-EXPOSE 9130
+EXPOSE 9123
 ENTRYPOINT ["/usr/bin/dumb-init", "--", "/entrypoint.sh"]
